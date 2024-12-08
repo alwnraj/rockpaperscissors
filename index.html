@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const turns = ["Rock", "Paper", "Scissors"];
+        function getComputerChoice(){
+            let computerchoice = turns[Math.floor(Math.random() * turns.length)];
+            return computerchoice;
+        }
+        //console.log(getComputerChoice());
+
+        function getHumanChoice() {
+            let myturn = prompt("What is your choice: rock , paper, scissors");
+            return myturn;
+        }
+
+        //console.log(getHumanChoice())
+
+        let humanScore = 0;
+        let computerScore = 0;
+
+        function playRound(humanChoice, computerChoice) {
+            // your code here!
+            // paper beats rock, rock beats scissors, scissors beats paper
+          }
+          
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        
+        playRound(humanSelection, computerSelection);
+
+        function playgame(){
+            
+        }
+
+
+    </script>
+</body>
+</html>
