@@ -73,8 +73,8 @@
             document.getElementById("computerscore").textContent = computerScore;
         }
 
-        function buttonClicking(event) {
-            const humanChoice = event.target.id;
+        function buttonClicking(event) { //registers the button clicking event
+            const humanChoice = event.target.id; //this basically registers the id value of which button to humanChoice variable
             const computerChoice = getComputerChoice();
             const roundresult = playRound(humanChoice, computerChoice);
             updateUI(humanChoice, computerChoice, roundresult);
