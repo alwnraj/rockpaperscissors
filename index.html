@@ -8,16 +8,15 @@
 <body>
     <h1>Rock Paper Scissors</h1>
     <h2>Choose your move:</h2>
-    <button type="button">Rock</button>
-    <button type="button">Paper</button>
-    <button type="button">Scissors</button>
+    <button type="button" id="rock">Rock</button>
+    <button type="button" id="paper">Paper</button>
+    <button type="button" id="scissors">Scissors</button>
 
-    <div id="result">
-        <p>Computer Choice:</p>
-        <p>Result:</p>
-        
-
-
+    <div id="finalresult">
+        <p>Computer Choice: <span id="computer-choice">None</span></p>
+        <p>Result: <span id="result">None</span></p>
+        <p>Human Score: <span id="humanscore">None</span></p>
+        <p>Computer Score: <span id="computerscore">None</span></p>
     </div>
 
     <script>
@@ -28,19 +27,6 @@
         }
         //console.log(getComputerChoice());
 
-        function getHumanChoice() {
-            while(true){
-                let myturn = prompt("What is your choice: rock, paper, scissors");
-                myturn = myturn.toLowerCase();
-                if (["rock","paper","scissors"].includes(myturn)){
-                    return myturn;
-                }
-                else {
-                    alert("Please type in any of the appropriate keywords: rock, paper, scissors");
-                }
-            }
-
-        }
 
         //console.log(getHumanChoice())
 
@@ -48,30 +34,28 @@
         let computerScore = 0;
 
         function playRound(humanChoice, computerChoice) {
-            // your code here!
             // paper beats rock, rock beats scissors, scissors beats paper
-            console.log(`Your choice: ${humanChoice}`);
-            console.log(`Computer Choice: ${computerChoice}`);
             if (humanChoice === computerChoice){
-                console.log("it's a tie");
+                return "it's a tie";
             }
 
             else if (humanChoice === 'rock' && computerChoice==='scissors'){
-                console.log("You win this round!")
                 humanScore++;
+                return "You win this round!"
             }
             else if (humanChoice === 'paper' && computerChoice==='rock'){
-                console.log("You win this round!")
                 humanScore++;
+                return "You win this round!"
             }
             else if (humanChoice === 'scissors' && computerChoice==='paper'){
-                console.log("You win this round!")
                 humanScore++;
+                return "You win this round!"
+                
             }
 
             else{
-                console.log("Computer wins this round!")
                 computerScore++;
+                return "computer wins this round!"
             }
           }
           
@@ -80,27 +64,25 @@
         
         
 
-        function playgame(){
-            const a = 5;
-            for (let n=0; n < a ; n++){
-                console.log(`Round ${n+1}`);
-                const humanSelection = getHumanChoice();
-                const computerSelection = getComputerChoice();
-                playRound(humanSelection,computerSelection);
-            }
 
-            if (humanScore > computerScore){
-                console.log("Human wins!");
-            }
-            else if (computerScore > humanScore){
-                console.log("Computer wins!");
-            }
-            else {
-                console.log("It's a tie!");
-            }
+
+        function updateUI(humanChoice, computerChoice, roundresult){
+            document.getElementById("computer-choice").textContent = computerChoice;
+            document.getElementById("result").textContent = roundresult;
+            document.getElementById("humanscore").textContent = humanScore;
+            document.getElementById("computerscore").textContent = computerScore;
         }
 
-        playgame();
+        function buttonClicking(event) {
+            const humanChoice = event.target.id;
+            const computerChoice = getComputerChoice();
+            const roundresult = playRound(humanChoice, computerChoice);
+            updateUI(humanChoice, computerChoice, roundresult);
+        }
+
+        document.getElementById("rock").addEventListener("click", buttonClicking);
+        document.getElementById("paper").addEventListener("click", buttonClicking);
+        document.getElementById("scissors").addEventListener("click", buttonClicking);
 
 
     </script>
